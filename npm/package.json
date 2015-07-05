@@ -1,0 +1,13 @@
+{
+  "name": "App",
+  "version": "0.0.1",
+  "description": "App",
+  "dependencies": {
+    "bootstrap": "latest",
+    "jquery": "latest",
+    "socket.io": "latest",
+    "stats-js": "latest",
+    "three": "latest"
+  },
+  "author": "developer"
+}

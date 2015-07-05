@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Mushroom Hunter</title>
+
+<script src="npm/node_modules/bootstrap/dist/css/bootstrap.min.css"></script>
+<script src="npm/node_modules/bootstrap/dist/css/bootstrap-theme.css"></script>
+<link rel=stylesheet type="text/css" href="css/style.css">
+
+</head>
+<body>
+
+<div id="blocker">
+
+	<div id="loading" class="centering" style="color:black">
+		<h1>Chargement en cours de Mushroom Hunter... <div id="percent"></div></h1>
+	</div>
+
+	<div id="instructions" class="centering"></div>
+	<div id="top_info" class="affiche_score">
+
+		<div class="progress" id="bbar" style="margin-bottom:3px;margin-top:5px;width:150px">
+			<div id="pross_bar" class="progress-bar progress-bar-info color_bar" 
+				role="progressbar" style="color:red;font-size:13px;">Boost
+				<span class="sr-only" id="value_bar"></span>
+			</div>
+		</div>
+		<div id="score"></div>
+		<div id="temps"></div>
+	</div>
+</div>
+
+<script>
+var link_json = "json/emplacementElement.json";
+var link_tree_texture = "obj/tree/arbre.jpg";
+var link_tree_obj = "obj/Mushroom/Mushroom.obj";
+var link_waterlily_texture = "obj/waterlily/SuirenT.bmp";
+var link_waterlily_obj = "obj/waterlily/waterlily.obj";
+var link_river_texture = "obj/river/texture.jpg";
+var link_clock_obj =  "obj/clock/clock.dae";
+var link_horse_obj =  "obj/horse/horse.js";
+var link_mushroom_obj = "obj/Mushroom/Mushroom.obj";
+var link_mushroom_texture1 = "obj/Mushroom/textures/UV_Grid_Sm.jpg";
+var link_mushroom_texture2 = "obj/Mushroom/textures/champi2.jpg";
+var link_mushroom_texture3 = "obj/Mushroom/textures/champi3.jpg";
+var link_map_texture = "textures/grasslight-big.jpg";
+var link_adversaire_obj =  "obj/boy/boy.obj";
+var link_server = undefined; // http://localhost:2000;
+</script>
+
+<script src="npm/node_modules/jquery/dist/jquery.min.js"></script>
+
+<script>
+$("#bbar").hide();
+</script>
+<script src="npm/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="http://static.lucas-nelaupe.fr/vendor/bower_components/modernizr/modernizr.js"></script>
+<script src="npm/node_modules/stats-js/build/stats.min.js"></script>
+<script src="npm/node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script>
+<script src="npm/node_modules/three/three.min.js"></script>
+
+<!--script src="js/multiplayer/arena.js"></script>
+<script src="js/multiplayer/socket.js"></script-->
+
+
+<script src="js/vendor/checkConfig.js"></script>
+<script src="js/vendor/ColladaLoader.js"></script>
+<script src="js/vendor/Detector.js"></script>
+<script src="js/vendor/OBJLoader.js"></script>
+<script src="js/vendor/PointerLockControls.js"></script>
+<script src="js/game/windows.js"></script>
+
+<script src="js/game/animation.js"></script>	
+<script src="js/game/collision.js"></script>	
+<script src="js/game/display.js"></script>	
+<script src="js/game/game.js"></script>	
+<script src="js/game/map.js"></script>	
+<script src="js/game/bot.js"></script>	
+<script src="js/game/debug.js"></script>	
+<script src="js/game/elements.js"></script>	
+<script src="js/game/lib.js"></script>	
+
+<script src="js/game/typegame.js"></script>
+
+<script>
+jeu.start(TYPE_GAME.BOT);
+</script>
+
+</body>
+</html>
