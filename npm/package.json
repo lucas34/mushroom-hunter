@@ -1,13 +1,13 @@
 {
-  "name": "App",
+  "name": "Mushroom-Hunnter",
   "version": "0.0.1",
-  "description": "App",
+  "description": "Dependencies",
   "dependencies": {
     "bootstrap": "latest",
     "jquery": "latest",
     "socket.io": "latest",
     "stats-js": "latest",
-    "three": "latest"
+    "three": "latest",
   },
-  "author": "developer"
+  "author": "Lucas Nelaupe"
 }

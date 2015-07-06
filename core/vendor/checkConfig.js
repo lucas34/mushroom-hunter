@@ -11,9 +11,9 @@ function checkConfig(){
 				controls.enabled = true;
 
 			} else {
-				if(jeu.inGame){
+				if(game.inGame){
 					message.showInstruction();
-					jeu.inGame = false;
+					game.inGame = false;
 					controls.enabled = false;
 					instructions.style.display = '';
 				}
@@ -39,11 +39,11 @@ function checkConfig(){
 		instructions.addEventListener( 'click', function ( event ) {
 
 
-			if(jeu.endGame){
+			if(game.endGame){
 				return;
 			}
 
-			jeu.inGame = true;
+			game.inGame = true;
 			instructions.innerHTML = '';
 
 			// Ask the browser to lock the pointer
@@ -78,8 +78,6 @@ function checkConfig(){
 		}, false );
 
 	} else {
-
 		instructions.innerHTML = 'Your browser doesn\'t seem to support Pointer Lock API';
-
 	}
 }

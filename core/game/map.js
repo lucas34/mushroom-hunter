@@ -11,20 +11,19 @@ Map_prototype.prototype = {
         light.shadowMapHeight = 1024;
         light.shadowMapDarkness = 0.95;
         light.shadowCameraVisible = true;
-        jeu.joueur.light = light;
+        game.player.light = light;
         scene.add(light);
     },
 
-    addAdversaireLight: function () {
-        var adversaireLight = new THREE.PointLight(0xffffff, 1.5, 1000);
-        adversaireLight.position.set(0, 200, 0);
-        adversaireLight.castShadow = true;
-        adversaireLight.shadowMapWidth = 1024;
-        adversaireLight.shadowMapHeight = 1024;
-        adversaireLight.shadowMapDarkness = 0.95;
-        adversaireLight.shadowCameraVisible = true;
-        scene.add(adversaireLight);
-
+    addOpponentLight: function () {
+        var opponentLight = new THREE.PointLight(0xffffff, 1.5, 1000);
+        opponentLight.position.set(0, 200, 0);
+        opponentLight.castShadow = true;
+        opponentLight.shadowMapWidth = 1024;
+        opponentLight.shadowMapHeight = 1024;
+        opponentLight.shadowMapDarkness = 0.95;
+        opponentLight.shadowCameraVisible = true;
+        scene.add(opponentLight);
     },
 
     addFog: function () {
@@ -51,7 +50,6 @@ Map_prototype.prototype = {
         controls = new THREE.PointerLockControls(camera);
         scene.add(controls.getObject());
     },
-
 
     load: new function () {
 
@@ -85,8 +83,8 @@ Map_prototype.prototype = {
         this.addLight();
         this.addFog();
         this.load.getJSON();
-        if (jeu.type == TYPE_GAME.BOT) {
-            this.addAdversaireLight();
+        if (game.type == TYPE_GAME.BOT) {
+            this.addOpponentLight();
         }
     }
 };

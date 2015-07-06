@@ -5,6 +5,7 @@
  * Adopted to common js by Javier Zapata
  */
 
+var previousPosition = new THREE.Vector3();
 THREE.PointerLockControls = function ( camera ) {
 
     var THREE = window.THREE || require('three');
@@ -52,11 +53,13 @@ THREE.PointerLockControls = function ( camera ) {
 
         switch ( event.keyCode ) {
 
+            case 90: // z
             case 38: // up
             case 87: // w
                 moveForward = true;
                 break;
 
+            case 81: // q
             case 37: // left
             case 65: // a
                 moveLeft = true; break;
@@ -84,11 +87,13 @@ THREE.PointerLockControls = function ( camera ) {
 
         switch( event.keyCode ) {
 
+            case 90: // z
             case 38: // up
             case 87: // w
                 moveForward = false;
                 break;
 
+            case 81: // q
             case 37: // left
             case 65: // a
                 moveLeft = false;
@@ -120,35 +125,9 @@ THREE.PointerLockControls = function ( camera ) {
 
     };
 
-    this.isOnObject = function ( boolean ) {
-
-        isOnObject = boolean;
-        canJump = boolean;
-
-    };
-
-    this.getDirection = function() {
-
-        // assumes the camera itself is not rotated
-
-        var direction = new THREE.Vector3( 0, 0, -1 );
-        var rotation = new THREE.Euler( 0, 0, 0, "YXZ" );
-
-        return function( v ) {
-
-            rotation.set( pitchObject.rotation.x, yawObject.rotation.y, 0 );
-
-            v.copy( direction ).applyEuler( rotation );
-
-            return v;
-
-        };
-
-    }();
-
     this.update = function () {
 
-        if ( scope.enabled === false || jeu.inGame == false) {
+        if ( scope.enabled === false || game.inGame == false) {
             prevTime = performance.now();
             return;
         }
@@ -183,17 +162,17 @@ THREE.PointerLockControls = function ( camera ) {
             canJump = true;
         }
 
-        if(jeu.type == TYPE_GAME.MULTIPLAYER){
+        if(game.type == TYPE_GAME.MULTIPLAYER){
             if(
-                (Math.floor(jeu.joueur.position.x) != Math.floor(precedent.x))
-                || (Math.floor(jeu.joueur.position.y) != Math.floor(precedent.y))
-                || (Math.floor(jeu.joueur.position.z) != Math.floor(precedent.z)))
+                (Math.floor(game.player.position.x) != Math.floor(previousPosition.x))
+                || (Math.floor(game.player.position.y) != Math.floor(previousPosition.y))
+                || (Math.floor(game.player.position.z) != Math.floor(previousPosition.z)))
             {
-                precedent.setFromMatrixPosition(camera.matrixWorld);
+                previousPosition.setFromMatrixPosition(camera.matrixWorld);
                 if(Math.floor(Date.now()/30 )!= di){
                     di = Math.floor(Date.now()/30);
-                    if(jeu.type == TYPE_GAME.MULTIPLAYER){
-                        Arena.meDeplacer(jeu.joueur.position.x,jeu.joueur.position.y,jeu.joueur.position.z);
+                    if(game.type == TYPE_GAME.MULTIPLAYER){
+                        Arena.iMove(game.player.position.x,game.player.position.y,game.player.position.z);
                     }
                 }
             }

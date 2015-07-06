@@ -15,31 +15,30 @@ function Jeu_prototype() {
     this.inGame = false;
     this.secondes = 100000;
     this.endGame = false;
-    this.collision = new collision();
     this.type = undefined;
 }
 
 Jeu_prototype.prototype = {
-    joueur: new function () {
+    player: new function () {
         this.position = new THREE.Vector3();
         this.boost = 0;
         this.points = 0;
         this.name = "Pseudo";
     },
     restart: function () {
-        this.joueur.position = new THREE.Vector3();
-        this.joueur.boost = 0;
-        this.joueur.points = 0;
+        this.player.position = new THREE.Vector3();
+        this.player.boost = 0;
+        this.player.points = 0;
         this.secondes = 0;
-        this.ennemie.points = 0;
-        $("#pross_bar").css("width", this.joueur.boost + "%");
+        this.opponent.points = 0;
+        $("#pross_bar").css("width", this.player.boost + "%");
         this.inGame = true;
         this.endGame = false;
         animation.prevTime = performance.now();
         message.startTimeManager();
         animation.play();
     },
-    ennemie: new function () {
+    opponent: new function () {
         this.points = 0;
         this.element = undefined;
         this.name = "Horse";
@@ -63,13 +62,13 @@ Jeu_prototype.prototype = {
         checkConfig();
         windows.init();
         map.init();
-        if (jeu.type == TYPE_GAME.BOT) {
+        if (game.type == TYPE_GAME.BOT) {
             this.secondes = 0;
             divTemps.innerHTML = 'Time : ' + this.secondes;
-            bot.add();
-        } else if (jeu.type == TYPE_GAME.MULTIPLAYER) {
-            this.joueur.name = "Team blue";
-            this.ennemie.name = "Team red";
+            horse.init();
+        } else if (game.type == TYPE_GAME.MULTIPLAYER) {
+            this.player.name = "Team blue";
+            this.opponent.name = "Team red";
             $("#temps").hide();
         }
 
@@ -79,4 +78,4 @@ Jeu_prototype.prototype = {
     }
 };
 
-var jeu = new Jeu_prototype();
+var game = new Jeu_prototype();

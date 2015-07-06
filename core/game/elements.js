@@ -11,7 +11,6 @@ Elements_prototype.prototype = {
         this.add_OBJ(link_waterlily_obj, link_waterlily_texture, data, [25, 25, 25], "waterlily");
     },
 
-
     addMushroomWithPosition: function (data) {
         function getTexture() {
             var rand = Math.floor((Math.random() * 10) + 1);
@@ -99,8 +98,8 @@ Elements_prototype.prototype = {
 
         var geometry = new THREE.BoxGeometry(50, 1 / 10, this.extractRiverDistance(data));
         var texture = THREE.ImageUtils.loadTexture(link_river_texture);
+        texture.minFilter = THREE.NearestFilter;
         var material = new THREE.MeshBasicMaterial({map: texture, overdraw: true});
-
 
         var mesh = new THREE.Mesh(geometry, material);
 
@@ -111,7 +110,7 @@ Elements_prototype.prototype = {
         mesh.position.z = y;
         mesh.rotation.y = this.extractAngleRiver(data) + Math.PI / 2;
 
-        jeu.collision.rivers.push(data);
+        collision.rivers.push(data);
         scene.add(mesh);
 
     },
@@ -131,8 +130,8 @@ Elements_prototype.prototype = {
 
         var distanceX = data['x2'] - data['x1'];
         var distanceZ = data['y2'] - data['y1'];
-        var pyth = lib.pythagore(distanceX, distanceZ);
-        var angle = Math.acos(distanceX / pyth);
+        var pythagore = lib.pythagore(distanceX, distanceZ);
+        var angle = Math.acos(distanceX / pythagore);
         if (distanceZ > 0) {
             angle = -angle;
         }
@@ -160,32 +159,32 @@ Elements_prototype.prototype = {
             scene.add(object);
             if (type == "mushroom") {
                 object.isMegamush = bool;
-                jeu.collision.mushrooms.push(object);
+                collision.mushrooms.push(object);
             } else if (type == "waterlily") {
-                jeu.collision.nenuphars.push(object);
+                collision.nenuphars.push(object);
             } else if (type == "three") {
-                jeu.collision.arbres.push(object);
-            } else if (type == "ennemie") {
+                collision.arbres.push(object);
+            } else if (type == "opponent") {
                 multiplayer.players["" + id] = object;
             }
         });
     },
 
     removeElementObjectMush: function (mush) {
-        for (var i = 0; i < jeu.collision.mushrooms.length; i++) {
-            if ((jeu.collision.mushrooms[i].position.x == mush.position.x) && (jeu.collision.mushrooms[i].position.z == mush.position.z)) {
-                scene.remove(jeu.collision.mushrooms[i]);
-                jeu.collision.mushrooms.splice(i, 1);
+        for (var i = 0; i < collision.mushrooms.length; i++) {
+            if ((collision.mushrooms[i].position.x == mush.position.x) && (collision.mushrooms[i].position.z == mush.position.z)) {
+                scene.remove(collision.mushrooms[i]);
+                collision.mushrooms.splice(i, 1);
                 break;
             }
         }
     },
 
     removeElementPositionMush: function (position) {
-        for (var i = 0; i < jeu.collision.mushrooms.length; i++) {
-            if ((jeu.collision.mushrooms[i].position.x == position[0]) && (jeu.collision.mushrooms[i].position.z == position[1])) {
-                scene.remove(jeu.collision.mushrooms[i]);
-                jeu.collision.mushrooms.splice(i, 1);
+        for (var i = 0; i < collision.mushrooms.length; i++) {
+            if ((collision.mushrooms[i].position.x == position[0]) && (collision.mushrooms[i].position.z == position[1])) {
+                scene.remove(collision.mushrooms[i]);
+                collision.mushrooms.splice(i, 1);
                 break;
             }
         }

@@ -6,8 +6,8 @@ function Animation_prototype() {
 Animation_prototype.prototype = {
 
     isContinue: function (id) {
-        if (jeu.type == TYPE_GAME.BOT) {
-            if (jeu.joueur.points >= 100 || jeu.ennemie.points >= 100) {
+        if (game.type == TYPE_GAME.BOT) {
+            if (game.player.points >= 100 || game.opponent.points >= 100) {
                 this.stop(id);
                 message.endGame();
             }
@@ -30,15 +30,14 @@ Animation_prototype.prototype = {
         renderer.render(scene, camera);
         controls.update();
 
-        jeu.joueur.position.setFromMatrixPosition(camera.matrixWorld);
-        animation.moveLight(jeu.joueur, jeu.joueur.light);
+        game.player.position.setFromMatrixPosition(camera.matrixWorld);
+        animation.moveLight(game.player, game.player.light);
 
-        jeu.collision.manage();
+        collision.manage();
 
-        if (jeu.inGame) {
-            if (jeu.type == TYPE_GAME.BOT) {
-                bot.move();
-                bot.animate();
+        if (game.inGame) {
+            if (game.type == TYPE_GAME.BOT) {
+                horse.move();
             }
         }
 
