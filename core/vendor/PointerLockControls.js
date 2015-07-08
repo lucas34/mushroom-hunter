@@ -141,6 +141,11 @@ THREE.PointerLockControls = function ( camera ) {
         var time = performance.now();
         var delta = ( time - prevTime ) / 1000;
 
+        if(delta * 10 > 2) {
+            prevTime = time;
+            return;
+        }
+
         velocity.x -= velocity.x * 10.0 * delta;
         velocity.z -= velocity.z * 10.0 * delta;
 
