@@ -60,9 +60,9 @@ var Arena = new function () {
                 this.arena.evenements['pickupMushroom'](data['id'], data['team'], data['position']);
             }
         });
-        this.socket.on('equipeGagnante', function (data) {
-            if (this.arena.evenements['equipeGagnante'] !== undefined) {
-                this.arena.evenements['equipeGagnante'](data['team']);
+        this.socket.on('teamWon', function (data) {
+            if (this.arena.evenements['teamWon'] !== undefined) {
+                this.arena.evenements['teamWon'](data['team']);
             }
         });
         this.socket.on('newRegularMushroom', function (data) {
@@ -79,19 +79,14 @@ var Arena = new function () {
                 this.arena.evenements['newMegaMushroom'](position);
             }
         });
-        this.socket.on('vagueChampignonsNormal', function () {
-            if (this.arena.evenements['vagueChampignonsNormal'] !== undefined) {
-                this.arena.evenements['vagueChampignonsNormal']();
+        this.socket.on('displayMushroomWave', function (data) {
+            if (this.arena.evenements['displayMushroomWave'] !== undefined) {
+                this.arena.evenements['displayMushroomWave']();
             }
         });
-        this.socket.on('megaMushroomWave', function () {
-            if (this.arena.evenements['megaMushroomWave'] !== undefined) {
-                this.arena.evenements['megaMushroomWave']();
-            }
-        });
-        this.socket.on('vagueChampignonsZone', function () {
-            if (this.arena.evenements['vagueChampignonsZone'] !== undefined) {
-                this.arena.evenements['vagueChampignonsZone']();
+        this.socket.on('displayMegaMushroom', function () {
+            if (this.arena.evenements['displayMegaMushroom'] !== undefined) {
+                this.arena.evenements['displayMegaMushroom']();
             }
         });
         this.socket.on('updateScore', function (data) {

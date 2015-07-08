@@ -41,7 +41,7 @@ Arena.when({
 		multiplayer.remove_player(id);
 	},
 	newMegaMushroom: function (position) {
-		position.isMegaMushroom = true;
+		position.isMegamush = true;
 		elements.addMushroomWithPosition(position);
 	},
 	updateScore: function (score) {
@@ -49,10 +49,10 @@ Arena.when({
 		game.opponent.points = score[1];
 		message.showScore();
 	},
-	megaMushroomWave: function () {
+	displayMegaMushroom: function () {
 		message.showStrobMessage("MEGA MUSH !!",20);
 	},
-	vagueChampignonsZone: function () {
+	displayMushroomWave: function () {
 		message.showStrobMessage("Vague de champignons !",20);
 	}
 });
