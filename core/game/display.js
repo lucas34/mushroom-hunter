@@ -33,14 +33,14 @@ Message_prototype.prototype = {
     },
 
     showStrobMessage: function (mess, time) {
-        console.log(time);
+        var scope = this;
         if (game.inGame && time > 0) {
             this.showMessage(mess);
             setTimeout(function () {
                 instructions.innerHTML = '';
             }, 100);
             setTimeout(function () {
-                this.showStrobMessage(mess, time - 1);
+                scope.showStrobMessage(mess, time - 1);
             }, 150);
         }
 
