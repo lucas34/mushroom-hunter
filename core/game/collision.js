@@ -60,7 +60,7 @@ Collision_prototype.prototype = {
                         if (game.player.boost > 100) {
                             game.player.boost = 100;
                         }
-                        $("#pross_bar").css("width", game.player.boost + "%");
+                        message.updateBoost();
                         message.showScore();
                     }
                     if (game.type == TYPE_GAME.MULTIPLAYER) {

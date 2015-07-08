@@ -79,7 +79,7 @@ var Arena = new function () {
                 this.arena.evenements['newMegaMushroom'](position);
             }
         });
-        this.socket.on('vagueChampignonsNormal', function (data) {
+        this.socket.on('vagueChampignonsNormal', function () {
             if (this.arena.evenements['vagueChampignonsNormal'] !== undefined) {
                 this.arena.evenements['vagueChampignonsNormal']();
             }

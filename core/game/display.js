@@ -3,6 +3,10 @@ function Message_prototype() {
 
 Message_prototype.prototype = {
 
+    updateBoost: function() {
+        $("#pross_bar").css("width", game.player.boost + "%");
+    },
+
     showInstruction: function () {
         if (game.type == TYPE_GAME.BOT) {
             instructions.innerHTML = '<span style="font-size:40px">Be the first to earn 100 points !</span><br />(ESPACE = Jump, MOUSE = Look around, ESC = Pause)';

@@ -79,6 +79,12 @@ THREE.PointerLockControls = function ( camera ) {
                 canJump = false;
                 break;
 
+            case 16: // boost
+                scope.boost();
+                game.player.boost = 0;
+                message.updateBoost();
+                break;
+
         }
 
     };
@@ -163,17 +169,14 @@ THREE.PointerLockControls = function ( camera ) {
         }
 
         if(game.type == TYPE_GAME.MULTIPLAYER){
-            if(
-                (Math.floor(game.player.position.x) != Math.floor(previousPosition.x))
+            if((Math.floor(game.player.position.x) != Math.floor(previousPosition.x))
                 || (Math.floor(game.player.position.y) != Math.floor(previousPosition.y))
-                || (Math.floor(game.player.position.z) != Math.floor(previousPosition.z)))
-            {
+                || (Math.floor(game.player.position.z) != Math.floor(previousPosition.z))) {
+
                 previousPosition.setFromMatrixPosition(camera.matrixWorld);
-                if(Math.floor(Date.now()/30 )!= di){
-                    di = Math.floor(Date.now()/30);
-                    if(game.type == TYPE_GAME.MULTIPLAYER){
-                        Arena.iMove(game.player.position.x,game.player.position.y,game.player.position.z);
-                    }
+
+                if(game.type == TYPE_GAME.MULTIPLAYER){
+                    Arena.iMove(game.player.position.x,game.player.position.y,game.player.position.z);
                 }
             }
         }
@@ -196,8 +199,13 @@ THREE.PointerLockControls = function ( camera ) {
     };
 
     this.slow = function (){
-        velocity.x = velocity.x * 0.8;
-        velocity.z = velocity.z * 0.8;
+        velocity.x = velocity.x * 0.6;
+        velocity.z = velocity.z * 0.6;
     };
+
+    this.boost = function(){
+        velocity.x *= (game.player.boost / 5);
+        velocity.z *= (game.player.boost / 5);
+    }
 
 };
