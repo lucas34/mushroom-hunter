@@ -36,38 +36,44 @@ Collision_prototype.prototype = {
         })(this);
 
         (function manageMushroom (self) {
-            for (var i = 0; i < self.mushrooms.length; i++) {
-                if (lib.isClose(self.mushrooms[i], game.player)) {
-                    if (game.type == TYPE_GAME.MULTIPLAYER) {
-                        Arena.pickupMushroom(self.mushrooms[i].position.x, self.mushrooms[i].position.z);
+            if (game.secondes < 0) { return; }
 
-                        if (self.mushrooms[i].megaMushroom) {
-                            game.player.boost += 30;
-                        } else {
-                            game.player.boost += 10;
-                        }
-                    }
-                    if (game.secondes > 0) {
-                        if (game.type != 2) {
-                            if (self.mushrooms[i].isMegamush) {
-                                game.player.points += 5;
-                                game.player.boost += 40;
-                            } else {
-                                game.player.boost += 20;
-                                game.player.points++;
-                            }
-                        }
-                        if (game.player.boost > 100) {
-                            game.player.boost = 100;
-                        }
-                        message.updateBoost();
-                        message.showScore();
-                    }
-                    if (game.type == TYPE_GAME.MULTIPLAYER) {
+            for (var i = 0; i < self.mushrooms.length; i++) {
+
+                var mushroom = self.mushrooms[i];
+                if(mushroom == undefined) console.log("collison mushroom "+i+" is undefined");
+
+                if (lib.isClose(mushroom, game.player)) {
+
+                    if (game.type == TYPE_GAME.MULTIPLAYER) { // notify
+                        Arena.pickupMushroom(self.mushrooms[i].position.x, self.mushrooms[i].position.z);
                         elements.removeElementObjectMush(self.mushrooms[i]);
-                    } else {
+                    } else if (game.type == TYPE_GAME.BOT){
                         elements.moveToRandomPosition(self.mushrooms[i]);
                     }
+
+                    // add boost
+                    if (mushroom.isMegamush) {
+                        game.player.boost += 30;
+                        message.updateBoost();
+                    } else {
+                        game.player.boost += 10;
+                    }
+                    if (game.player.boost > 100) {
+                        game.player.boost = 100;
+                    }
+                    message.updateBoost();
+
+                    // add score
+                    if (game.type == TYPE_GAME.BOT){
+                        if (mushroom.isMegamush) {
+                            game.player.points += 5;
+                        } else {
+                            game.player.points++;
+                        }
+                        message.showScore();
+                    }
+
                     break;
                 }
             }
