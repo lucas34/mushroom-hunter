@@ -31,7 +31,6 @@
 </div>
 
 <script>
-	var link_json = "json/emplacementElement.json";
 	var link_tree_texture = "obj/tree/arbre.jpg";
 	var link_tree_obj = "obj/Mushroom/Mushroom.obj";
 	var link_waterlily_texture = "obj/waterlily/SuirenT.bmp";
@@ -45,7 +44,9 @@
 	var link_mushroom_texture3 = "obj/Mushroom/textures/champi3.jpg";
 	var link_map_texture = "textures/grasslight-big.jpg";
 	var link_opponent_obj =  "obj/boy/boy.obj";
-	var link_server = undefined; // http://localhost:2000;
+	//var link_json = "json/emplacementElement.json";
+	var link_json = "json/multiplayer.json";
+	var link_server = "http://localhost:22498";
 </script>
 
 <script src="npm/node_modules/jquery/dist/jquery.min.js"></script>
@@ -58,9 +59,8 @@
 <script src="npm/node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script>
 <script src="npm/node_modules/three/three.min.js"></script>
 
-<!--script src="js/multiplayer/arena.js"></script>
-<script src="js/multiplayer/socket.js"></script-->
-
+<script src="core/multiplayer/arena.js"></script>
+<script src="core/multiplayer/socket.js"></script>
 
 <script src="core/vendor/checkConfig.js"></script>
 <script src="core/vendor/OBJLoader.js"></script>
@@ -81,7 +81,7 @@
 <script src="core/game/typegame.js"></script>
 
 <script>
-	game.start(TYPE_GAME.BOT);
+	game.start(TYPE_GAME.MULTIPLAYER);
 </script>
 
 </body>
