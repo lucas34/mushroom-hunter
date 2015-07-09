@@ -1,4 +1,11 @@
 function Elements_prototype() {
+    this.cache = {};
+
+    this.CachedObject = function (obj, mesh) {
+        this.geometry = obj;
+        this.material = mesh;
+
+    };
 }
 
 Elements_prototype.prototype = {
@@ -139,33 +146,49 @@ Elements_prototype.prototype = {
 
     },
 
-
     add_JSON: function (link, shape, data, scale, type, bool, id) {
 
-        var texture = THREE.ImageUtils.loadTexture(shape);
-        texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-        texture.repeat.set( 1, 1);
-        var material = new THREE.MeshBasicMaterial( { map: texture } );
+        const scope = this;
 
-        var loader = new THREE.JSONLoader(true);
-        loader.load(link, function (geometry) {
+        if(this.cache[link] && this.cache[shape]) {
+
+            var geometry = this.cache[link].geometry;
+            var material =  this.cache[shape].material;
+
             var mesh = new THREE.Mesh(geometry, material);
+            addToScene(mesh);
 
-            mesh.scale.set(scale[0], scale[1], scale[2]);
-            mesh.position.set(data['x1'], 0, data['y1']);
+        } else {
+            var texture = THREE.ImageUtils.loadTexture(shape);
+            texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+            texture.repeat.set(1, 1);
+            var materialMesh = new THREE.MeshBasicMaterial({map: texture});
 
-            scene.add(mesh);
+            var loader = new THREE.JSONLoader(true);
+            loader.load(link, function (geometry) {
+                var mesh = new THREE.Mesh(geometry, materialMesh);
+                addToScene(mesh);
+
+                scope.cache[link] = geometry;
+                scope.cache[shape] = materialMesh;
+            });
+        }
+
+        function addToScene(object) {
+            object.position.set(data['x1'], 0, data['y1']);
+            object.scale.set(scale[0], scale[1], scale[2]);
+            scene.add(object);
             if (type == "mushroom") {
-                mesh.isMegamush = bool;
-                collision.mushrooms.push(mesh);
+                object.isMegamush = bool;
+                collision.mushrooms.push(object);
             } else if (type == "waterlily") {
-                collision.nenuphars.push(mesh);
+                collision.nenuphars.push(object);
             } else if (type == "three") {
-                collision.arbres.push(mesh);
+                collision.arbres.push(object);
             } else if (type == "opponent") {
-                multiplayer.players["" + id] = mesh;
+                multiplayer.players["" + id] = object;
             }
-        });
+        }
 
     },
 

@@ -227,4 +227,4 @@ var triggerAddOne = function () {
 	map.addMushroom(POINT_REGULAR_MUSHROOM),
 	setTimeout(triggerAddOne, 2000);
 };
-setTimeout(triggerAddOne, 2000);
+//setTimeout(triggerAddOne, 2000);
