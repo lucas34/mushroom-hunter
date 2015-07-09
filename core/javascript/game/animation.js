@@ -48,4 +48,4 @@ Animation_prototype.prototype = {
     }
 };
 
-var animation = new Animation_prototype();
+const animation = new Animation_prototype();

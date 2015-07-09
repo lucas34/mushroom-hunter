@@ -31,57 +31,59 @@
 </div>
 
 <script>
-	var link_tree_texture = "obj/tree/arbre.jpg";
-	var link_tree_obj = "obj/Mushroom/Mushroom.obj";
-	var link_waterlily_texture = "obj/waterlily/SuirenT.bmp";
-	var link_waterlily_obj = "obj/waterlily/waterlily.obj";
-	var link_river_texture = "obj/river/texture.jpg";
-	var link_clock_obj =  "obj/clock/clock.dae";
-	var link_horse_obj =  "obj/horse/horse.js";
-	var link_mushroom_obj = "obj/Mushroom/Mushroom.obj";
-	var link_mushroom_texture1 = "obj/Mushroom/textures/UV_Grid_Sm.jpg";
-	var link_mushroom_texture2 = "obj/Mushroom/textures/champi2.jpg";
-	var link_mushroom_texture3 = "obj/Mushroom/textures/champi3.jpg";
-	var link_map_texture = "textures/grasslight-big.jpg";
-	var link_opponent_obj =  "obj/boy/boy.obj";
-	//var link_json = "json/emplacementElement.json";
-	var link_json = "json/multiplayer.json";
+	var link_tree_texture = "core/elements/tree/texture.jpg";
+	var link_tree_obj = "core/elements/mushroom/mushroom.json";
+
+	var link_waterlily_texture = "core/elements/waterlily/texture.jpg";
+	var link_waterlily_obj = "core/elements/waterlily/waterlily.obj";
+
+	var link_river_texture = "core/elements/river/texture.jpg";
+
+	var link_horse_obj =  "core/elements/horse/horse.json";
+
+	var link_mushroom_obj = "core/elements/mushroom/mushroom.json";
+	var link_mushroom_texture1 = "core/elements/mushroom/texture/brown.jpg";
+	var link_mushroom_texture2 = "core/elements/mushroom/texture/blue.jpg";
+	var link_mushroom_texture3 = "core/elements/mushroom/texture/yellow.jpg";
+
+	var link_map_texture = "core/elements/ground/texture.jpg";
+
+	var link_json = "core/map/bot.json";
+	//var link_json = "map/multiplayer.json";
+
 	var link_server = "http://localhost:22498";
 </script>
 
 <script src="npm/node_modules/jquery/dist/jquery.min.js"></script>
-
-<script>
-	$("#bbar").hide();
-</script>
+<script> $("#bbar").hide(); </script>
 <script src="npm/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="npm/node_modules/stats-js/build/stats.min.js"></script>
 <script src="npm/node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script>
 <script src="npm/node_modules/three/three.min.js"></script>
 
-<script src="core/multiplayer/arena.js"></script>
-<script src="core/multiplayer/socket.js"></script>
+<script src="core/javascript/multiplayer/arena.js"></script>
+<script src="core/javascript/multiplayer/socket.js"></script>
 
-<script src="core/vendor/checkConfig.js"></script>
-<script src="core/vendor/OBJLoader.js"></script>
-<script src="core/vendor/PointerLockControls.js"></script>
-<script src="core/game/windows.js"></script>
+<script src="core/javascript/vendor/checkConfig.js"></script>
+<script src="core/javascript/vendor/OBJLoader.js"></script>
+<script src="core/javascript/vendor/PointerLockControls.js"></script>
+<script src="core/javascript/game/windows.js"></script>
 
-<script src="core/game/animation.js"></script>
-<script src="core/game/collision.js"></script>
-<script src="core/game/display.js"></script>
-<script src="core/game/game.js"></script>
-<script src="core/game/map.js"></script>
-<script src="core/bot/engine.js"></script>
-<script src="core/bot/horse.js"></script>
-<script src="core/game/debug.js"></script>
-<script src="core/game/elements.js"></script>
-<script src="core/game/lib.js"></script>
+<script src="core/javascript/game/animation.js"></script>
+<script src="core/javascript/game/collision.js"></script>
+<script src="core/javascript/game/display.js"></script>
+<script src="core/javascript/game/game.js"></script>
+<script src="core/javascript/game/map.js"></script>
+<script src="core/javascript/bot/engine.js"></script>
+<script src="core/javascript/bot/horse.js"></script>
+<script src="core/javascript/game/debug.js"></script>
+<script src="core/javascript/game/elements.js"></script>
+<script src="core/javascript/game/lib.js"></script>
 
-<script src="core/game/typegame.js"></script>
+<script src="core/javascript/game/typegame.js"></script>
 
 <script>
-	game.start(TYPE_GAME.MULTIPLAYER);
+	game.start(TYPE_GAME.BOT);
 </script>
 
 </body>

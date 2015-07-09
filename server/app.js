@@ -221,4 +221,10 @@ var triggerEvent = function () {
 var map = new Map(MAP_WIDTH, MAP_HEIGHT);
 
 setTimeout(triggerEvent, Math.floor(Math.random() * (MAX_TIME_BETWEEN_EVENT - MIN_TIME_BETWEEN_EVENT)) + MIN_TIME_BETWEEN_EVENT);
-setTimeout(map.addMushroom(POINT_REGULAR_MUSHROOM), 2000);
+
+
+var triggerAddOne = function () {
+	map.addMushroom(POINT_REGULAR_MUSHROOM),
+	setTimeout(triggerAddOne, 2000);
+};
+setTimeout(triggerAddOne, 2000);

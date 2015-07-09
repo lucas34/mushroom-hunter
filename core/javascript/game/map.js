@@ -27,7 +27,7 @@ Map_prototype.prototype = {
     },
 
     addFog: function () {
-        scene.fog = new THREE.Fog(0x000000, 0, 5000);
+        scene.fog = new THREE.Fog(0x000000, 0, 1000);
     },
 
     generate: function () {

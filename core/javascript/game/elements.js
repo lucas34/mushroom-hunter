@@ -4,7 +4,7 @@ function Elements_prototype() {
 Elements_prototype.prototype = {
 
     addThree: function (data) {
-        this.add_OBJ(link_tree_obj, link_tree_texture, data, [10, 100, 10], "three");
+        this.add_JSON(link_tree_obj, link_tree_texture, data, [20, 150, 20], "three");
     },
 
     addWaterlily: function (data) {
@@ -31,13 +31,13 @@ Elements_prototype.prototype = {
 
         function getScale() {
             if (data.isMegamush) {
-                return [5, 5, 5];
+                return [50, 50, 50];
             } else {
-                return [2, 2, 2];
+                return [4, 4, 4];
             }
         }
 
-        this.add_OBJ(link_mushroom_obj, getTexture(), position, getScale(), "mushroom", data.isMegamush)
+        this.add_JSON(link_mushroom_obj, getTexture(), position, getScale(), "mushroom", data.isMegamush)
 
     },
 
@@ -81,9 +81,9 @@ Elements_prototype.prototype = {
 
         function getScale() {
             if (data.isMegamush) {
-                return [5, 5, 5];
+                return [50, 50, 50];
             } else {
-                return [2, 2, 2];
+                return [4, 4, 4];
             }
         }
 
@@ -91,7 +91,7 @@ Elements_prototype.prototype = {
         var position = getPosition();
         var scale = getScale();
 
-        this.add_OBJ(link_mushroom_obj, texture, position, scale, "mushroom", data.isMegamush)
+        this.add_JSON(link_mushroom_obj, texture, position, scale, "mushroom", data.isMegamush)
     },
 
     addRiver: function (data) {
@@ -136,6 +136,36 @@ Elements_prototype.prototype = {
             angle = -angle;
         }
         return angle;
+
+    },
+
+
+    add_JSON: function (link, shape, data, scale, type, bool, id) {
+
+        var texture = THREE.ImageUtils.loadTexture(shape);
+        texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+        texture.repeat.set( 1, 1);
+        var material = new THREE.MeshBasicMaterial( { map: texture } );
+
+        var loader = new THREE.JSONLoader(true);
+        loader.load(link, function (geometry) {
+            var mesh = new THREE.Mesh(geometry, material);
+
+            mesh.scale.set(scale[0], scale[1], scale[2]);
+            mesh.position.set(data['x1'], 0, data['y1']);
+
+            scene.add(mesh);
+            if (type == "mushroom") {
+                mesh.isMegamush = bool;
+                collision.mushrooms.push(mesh);
+            } else if (type == "waterlily") {
+                collision.nenuphars.push(mesh);
+            } else if (type == "three") {
+                collision.arbres.push(mesh);
+            } else if (type == "opponent") {
+                multiplayer.players["" + id] = mesh;
+            }
+        });
 
     },
 
