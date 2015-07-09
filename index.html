@@ -48,8 +48,8 @@
 
 	var link_map_texture = "core/elements/ground/texture.jpg";
 
-	//var link_json = "core/map/bot.json";
-	var link_json = "map/multiplayer.json";
+	var link_json = "core/map/bot.json";
+	//var link_json = "core/map/multiplayer.json";
 
 	var link_server = "http://localhost:22498";
 </script>
@@ -61,8 +61,8 @@
 <script src="npm/node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script>
 <script src="npm/node_modules/three/three.min.js"></script>
 
-<script src="core/javascript/multiplayer/arena.js"></script>
-<script src="core/javascript/multiplayer/socket.js"></script>
+<!--script src="core/javascript/multiplayer/arena.js"></script>
+<script src="core/javascript/multiplayer/socket.js"></script-->
 
 <script src="core/javascript/vendor/checkConfig.js"></script>
 <script src="core/javascript/vendor/OBJLoader.js"></script>
@@ -80,10 +80,10 @@
 <script src="core/javascript/game/elements.js"></script>
 <script src="core/javascript/game/lib.js"></script>
 
-<script src="core/javascript/game/typegame.js"></script>
+<script src="core/javascript/game/typeGame.js"></script>
 
 <script>
-	game.start(TYPE_GAME.MULTIPLAYER);
+	game.start(TYPE_GAME.BOT);
 </script>
 
 </body>
