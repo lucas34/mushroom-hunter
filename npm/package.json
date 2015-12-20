@@ -2,12 +2,12 @@
   "name": "Mushroom-Hunnter",
   "version": "0.0.1",
   "description": "Dependencies",
+  "author": "Lucas Nelaupe",
   "dependencies": {
     "bootstrap": "latest",
     "jquery": "latest",
     "socket.io": "latest",
     "stats-js": "latest",
-    "three": "latest",
-  },
-  "author": "Lucas Nelaupe"
+    "three": "latest"
+  }
 }
